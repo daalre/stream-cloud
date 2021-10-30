@@ -37,7 +37,7 @@ async def download(event):
                 participant = event.sender_id
                 ))
         except errors.UserNotParticipantError:
-            await event.reply(f"برای حمایت از ما و دریافت اخبار جدید مربوط به ربات لطفا ابتدا در کانال زیر عضو شوید \n\n@{Config.CHANNEL_USERNAME}\n\nسپس محددا ربات را  /start نمایید.")
+            await event.reply(f"⭕️ برای حمایت از ما و دریافت اخبار جدید ربات لطفا ابتدا در کانال زیر عضو شوید : \n\n🆔@{Config.CHANNEL_USERNAME}\n\n✅ سپس مجددا ربات را  /start نمایید.")
             return
         
         if event.file :
@@ -49,7 +49,7 @@ async def download(event):
             id_hex = hex(msg.id)[2:]
             id = f"{id_hex}/{get_file_name(msg)}"
             bot_url = f"t.me/{username_bot}?start={id_hex}"
-            await event.reply(f"Link to download file: \n\n📎 : {Config.DOMAIN}/{id}\n\n🤖 : {bot_url}")
+            await event.reply(f"🔗 لینک دانلود مستقیم فایل : : \n\n📎 : {Config.DOMAIN}/{id}\n\n🤖 : {bot_url}")
             return
 
         elif id_msg := re.search("/start (.*)", event.raw_text ):
@@ -60,25 +60,25 @@ async def download(event):
                     return
                 msg = await event.client.get_messages(Config.CHANNEL,ids=id)
                 if not msg or not msg.file :
-                    return await event.reply("404! File Not Found")
+                    return await event.reply("‼️فایل یافت نشد ❌")
                 if regex := re.search(r"(\d*)/(\d*)",msg.message):
                     if user_id := int(regex.group(1)) :
                         msg_id = int(regex.group(2))
                         file = await event.client.get_messages(user_id,ids=msg_id)
                         if not file or not file.file :
-                            return await event.reply("404! File Not Found")
+                            return await event.reply("‼️فایل یافت نشد ❌")
                         forward = await file.forward_to(event.chat_id)
                         id_name = f"{id_hex}/{get_file_name(msg)}"
                         bot_url = f"t.me/{username_bot}?start={id_hex}"
-                        forward_reply = await forward.reply(f"will be deleted in 21 second. \n\n📎 : {Config.DOMAIN}/{id_name}\n\n🤖 : {bot_url}",link_preview=False)
+                        forward_reply = await forward.reply(f"‼️ 21 ثانیه دیگر حذف میشود . \n\n📎 : {Config.DOMAIN}/{id_name}\n\n🤖 : {bot_url}",link_preview=False)
                         await asyncio.sleep(12)
-                        await forward_reply.edit(f"will be deleted in 10 second. \n\n📎 : {Config.DOMAIN}/{id_name}\n\n🤖 : {bot_url}")
+                        await forward_reply.edit(f"‼️ 10 ثانیه دیگر حذف میشود . \n\n📎 : {Config.DOMAIN}/{id_name}\n\n🤖 : {bot_url}")
                         await asyncio.sleep(10)
                         await forward.delete()
                         await forward_reply.edit(f"📎 : {Config.DOMAIN}/{id_name}\n\n🤖 : {bot_url}",link_preview=True)
                 return
         
-        await event.reply("Send an file to get a link to download it")
+        await event.reply("❇️ فایل مورد نظر را برای دریافت لینک مستقیم دانلود ارسال کنید 🙂 : ")
         
 
     elif event.is_channel:
@@ -89,7 +89,7 @@ async def download(event):
                     if user_id := int(regex.group(1)) :
                         msg_id = int(regex.group(2))
                         if await event.client.send_message(entity=user_id, message=event.message, reply_to=msg_id):
-                            await event.client.edit_message(event.chat_id,event.id,f"{event.message.message}\n sended")
+                            await event.client.edit_message(event.chat_id,event.id,f"{event.message.message}\n ارسال شد ✔️")
                         
                         
                     
