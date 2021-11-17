@@ -1,9 +1,9 @@
 import os
 
 class Config:
-    API_ID = int( os.getenv("api_id","1234") )
-    API_HASH = os.getenv("api_hash","21ab7cb0a453b5e60016dc7bbeb701cb")
-    CHANNEL = int( os.getenv("channel_files_chat_id","-1001249461809") )
-    CHANNEL_USERNAME = os.getenv("channel_username","UserLandapp")
-    TOKEN = os.getenv("token","xxxxx")
-    DOMAIN  = os.getenv("domain","https://newdlstar.herokuapp.com")
+    API_ID = int( os.getenv("api_id","2552785") )
+    API_HASH = os.getenv("api_hash","811930f007ed16f87d66bf83813ac7aa")
+    CHANNEL = int( os.getenv("channel_files_chat_id","-1001157608302") )
+    CHANNEL_USERNAME = os.getenv("channel_username","DaalFile")
+    TOKEN = os.getenv("token","1716174020:AAHBraO7zw4St82rSxjaodkDUCgl7qsj7g0")
+    DOMAIN  = os.getenv("domain","https://daalfile.herokuapp.com")
